@@ -34,9 +34,6 @@ jobs:
       DB_PASSWORD: db_pass
       DB_HOST: 127.0.0.1
 
-    outputs:
-      NOTICE_SLACK: ${{ steps.notice-slack.outputs.NOTICE_SLACK }}
-
     services:
       mysql:
         image: mysql:5.7
@@ -48,7 +45,7 @@ jobs:
           MYSQL_DATABASE: test_database
           MYSQL_ROOT_PASSWORD: root
           DB_PORT: 3306
-        options: --health-cmd "mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - uses: actions/checkout@v2
