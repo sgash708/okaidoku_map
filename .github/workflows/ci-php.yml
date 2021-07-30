@@ -14,36 +14,25 @@ jobs:
       - uses: dorny/paths-filter@v2
         id: changes
         with:
-          # https://github.com/dorny/paths-filter#usage
           base: ${{ github.ref }}
           filters: |
             php:
               - './server/**/*.php'
-      # 作業ブランチの場合はphpに変更がある時のみテスト実行したいが、master,stagingはファイル関係なくテストを回したい
-      # push.pathsはブランチごとに設定できないのでここで条件設定
       - id: status_run_phpunit
         run: |
           run_phpunit=`(test "${{ github.ref }}" = "refs/heads/master" || test "${{ github.ref }}" = "refs/heads/staging") || "${{ steps.changes.outputs.php }}" = "true"; echo $?`
           echo "::set-output name=RUN_PHPUNIT::$run_phpunit"
 
-  # jobごとにコンテナが破棄されるので、buildしたものをartifactに保存してjobで共有できるようにする必要があるが
-  # アップロードとダウンロードに時間がかかるためbuild~testまでは1jobにしている
   build-and-test:
-    # https://docs.github.com/ja/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
     runs-on: ubuntu-latest
     if: needs.is-run-test.outputs.RUN_PHPUNIT == '0'
     needs: is-run-test
-
-    # jobs.<job_id>.env
-    # ジョブ中のすべてのステップから利用できる環境変数のmapです
-    # https://docs.github.com/ja/actions/reference/workflow-syntax-for-github-actions#env
     env:
       DB_PORT: 3306
       DB_DATABASE: test_database
       DB_USERNAME: db_user
       DB_PASSWORD: db_pass
       DB_HOST: 127.0.0.1
-      AWS_DEFAULT_REGION: ap-northeast-1
 
     outputs:
       NOTICE_SLACK: ${{ steps.notice-slack.outputs.NOTICE_SLACK }}
@@ -53,7 +42,6 @@ jobs:
         image: mysql:5.7
         ports:
           - "3306:3306"
-        # テストまわすだけの使い捨てユーザーなので直指定してます
         env:
           MYSQL_USER: db_user
           MYSQL_PASSWORD: db_pass
@@ -63,12 +51,7 @@ jobs:
         options: --health-cmd "mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
-      - id: notice-slack
-        run: echo "::set-output name=NOTICE_SLACK::true"
-
       - uses: actions/checkout@v2
-
-      # https://docs.github.com/ja/actions/guides/caching-dependencies-to-speed-up-workflows
       - name: cache composer
         id: vendor-cache
         uses: actions/cache@v1
@@ -88,23 +71,13 @@ jobs:
           php-version: '8.0'
           tools: composer:v2
 
-      # DBが立ち上がるまで待つ
-      # https://firefart.at/post/using-mysql-service-with-github-actions/
-      - name: Verify MySQL connection
-        env:
-          PORT: ${{ job.services.mysql.ports[3306] }}
-        run: |
-          while ! mysqladmin ping -h "127.0.0.1" -P"$PORT" --silent; do
-            sleep 1
-          done
-
       - name: composer install
         if: steps.vendor-cache.outputs.cache-hit != 'true'
         working-directory: ./server
         run: |
           php -d memory_limit=-1 /usr/bin/composer install -n --prefer-dist
 
-      - name: set application
+      - name: prepare application
         working-directory: ./server
         run: |
           cp .env.example .env
@@ -112,13 +85,9 @@ jobs:
           php artisan key:generate
           php artisan storage:link
 
-      - name: db migrate
+      - name: migrate database
         working-directory: ./server
         run: php artisan migrate
-
-      - name: analyse
-        working-directory: ./server
-        run: ./vendor/bin/phpstan analyse --level=3 --memory-limit=-1 --no-progress
 
       - name: Run PHPUnit
         working-directory: ./server
