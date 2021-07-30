@@ -11,23 +11,6 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'handle_name',
-        'last_name',
-        'last_name_kana',
-        'first_name',
-        'first_name_kana',
-        'phone_number',
-        'email',
-        'password',
-        'sex',
-    ];
-
-    /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
