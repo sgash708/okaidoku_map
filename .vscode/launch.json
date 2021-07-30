@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "name": "XDebug on docker",
+            "type": "php",
+            "request": "launch",
+            "port": 9001,
+            "pathMappings": {
+                "/var/www/html": "/server"
+            }
+        }
+    ]
+}
