@@ -2,7 +2,7 @@ version: '3'
 
 services: 
   php:
-    container_name: restudy_php
+    container_name: omap_php
     build: ./docker/php
     volumes: 
       - ./server:/var/www/html
@@ -14,7 +14,7 @@ services:
   db:
     env_file: .env
     image: mysql:5.7
-    container_name: restudy_db
+    container_name: omap_db
     environment: 
       MYSQL_ROOT_PASSWORD: ${MYSQL_RPASS}
       MYSQL_DATABASE: ${MYSQL_DB}
