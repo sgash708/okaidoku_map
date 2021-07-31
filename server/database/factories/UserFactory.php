@@ -27,7 +27,7 @@ class UserFactory extends Factory
     {
         return [
             'id'              => self::$number++,
-            'handle_name'     => $this->faker->name(),
+            'handle_name'     => $this->faker->userName(),
             'last_name'       => $this->faker->lastName(),
             'last_name_kana'  => $this->faker->lastKanaName(),
             'first_name'      => $this->faker->firstName(),
