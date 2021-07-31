@@ -26,7 +26,7 @@ class ShopFactory extends Factory
     {
         return [
             'id' => self::$number++,
-            'name' => $this->faker->name(),
+            'name' => $this->faker->company(),
             'grid_x' => $this->faker->latitude(),
             'grid_y' => $this->faker->longitude(),
         ];
