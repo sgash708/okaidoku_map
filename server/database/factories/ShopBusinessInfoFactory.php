@@ -3,17 +3,17 @@
 namespace Database\Factories;
 
 use App\Models\Shop;
-use App\Models\ShopBussinessInfo;
+use App\Models\ShopBusinessInfo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ShopBussinessInfoFactory extends Factory
+class ShopBusinessInfoFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = ShopBussinessInfo::class;
+    protected $model = ShopBusinessInfo::class;
 
     /**
      * Define the model's default state.

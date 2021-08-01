@@ -10,7 +10,7 @@ class Shop extends Model
     use HasFactory;
 
     /**
-     * Get all of the shop_bussiness_infos for the Shop
+     * Get all of the shop_business_infos for the Shop
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

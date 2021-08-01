@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateShopBussinessInfosTable extends Migration
+class CreateShopBusinessInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateShopBussinessInfosTable extends Migration
      */
     public function up()
     {
-        Schema::create('shop__bussiness__infos', function (Blueprint $table) {
+        Schema::create('shop_business_infos', function (Blueprint $table) {
             $table->foreignId('shop_id')->comment('店舗ID')->constrained();
             $table->time('start')->comment('開始時間')->nullable();
             $table->time('end')->comment('終了時間')->nullable();
@@ -35,6 +35,6 @@ class CreateShopBussinessInfosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shop__bussiness__infos');
+        Schema::dropIfExists('shop_business_infos');
     }
 }

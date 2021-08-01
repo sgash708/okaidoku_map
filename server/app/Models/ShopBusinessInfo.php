@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ShopBussinessInfo extends Model
+class ShopBusinessInfo extends Model
 {
     use HasFactory;
 
     /**
-     * Get the shops that owns the ShopBussinessInfo
+     * Get the shops that owns the ShopBusinessInfo
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
