@@ -9,6 +9,8 @@ class Shop extends Model
 {
     use HasFactory;
 
+    public $incrementing = false;
+
     /**
      * Get all of the shop_business_infos for the Shop
      *
