@@ -12,7 +12,7 @@ class Shop extends Model
     public $incrementing = false;
 
     /**
-     * Get all of the shop_business_infos for the Shop
+     * shop_business_infoテーブルの<hasMany>所有関係
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

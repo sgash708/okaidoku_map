@@ -10,7 +10,7 @@ class ShopBusinessInfo extends Model
     use HasFactory;
 
     /**
-     * Get the shops that owns the ShopBusinessInfo
+     * shopsテーブルの<belongsTo>所有関係
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
