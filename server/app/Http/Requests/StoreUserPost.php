@@ -29,9 +29,15 @@ class StoreUserPost extends FormRequest
         $pass_between = UserConsts::PASS_MIN . ',' . UserConsts::PASS_MAX;
 
         return [
-            'name'     => 'required|string|between:' . $name_between,
-            'email'    => 'required|unique:users|email',
-            'password' => 'required|string|between' . $pass_between,
+            'handle_name'     => 'required|string|unique:users|between:' . $name_between,
+            'last_name'       => 'required|string',
+            'last_name_kana'  => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            'first_name'      => 'required|string',
+            'first_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            'phone_number'    => 'regex:/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/u',
+            'email'           => 'required|unique:users|email',
+            'password'        => 'required|string|between' . $pass_between,
+            'sex'             => 'required|exists',
         ];
     }
 
@@ -44,20 +50,44 @@ class StoreUserPost extends FormRequest
     {
         return [
             // REF: https://laravel.com/api/8.x/Illuminate/Translation/Translator.html
-            'name.required' => __('validation.required', ['attribute' => 'ユーザ名']),
-            'name.string'   => __('validation.string', ['attribute' => 'ユーザ名']),
-            'name.between'  => __('validation.between', [
-                'attribute' => 'ユーザ名',
+            'handle_name.required' => __('validation.required', ['attribute' => UserConsts::LABEL['handle_name']]),
+            'handle_name.string'   => __('validation.string', ['attribute' => UserConsts::LABEL['handle_name']]),
+            'handle_name.unique'   => __('validation.unique', ['attribute' => UserConsts::LABEL['handle_name']]),
+            'handle_name.between'  => __('validation.between', [
+                'attribute' => UserConsts::LABEL['handle_name'],
                 'min'       => UserConsts::NAME_MIN,
                 'max'       => UserConsts::NAME_MAX,
             ]),
-            'email.required'    => __('validation.required', ['attribute' => 'メールアドレス']),
-            'email.unique'      => __('validation.unique', ['attribute' => 'メールアドレス']),
-            'email.email'       => __('validation.email'),
-            'password.required' => __('validation.required', ['attribute' => 'パスワード']),
-            'password.string'   => __('validation.string', ['attribute' => 'パスワード']),
-            'password.between'  => __('validation.between', [
-                'attribute' => 'パスワード',
+            'last_name.required'      => __('validation.required', ['attribute' => UserConsts::LABEL['last_name']]),
+            'last_name.string'        => __('validation.string', ['attribute' => UserConsts::LABEL['last_name']]),
+            'last_name_kana.required' => __('validation.required', [
+                'attribute' => UserConsts::LABEL['last_name_kana'],
+            ]),
+            'last_name_kana.string' => __('validation.string', ['attribute' => UserConsts::LABEL['last_name_kana']]),
+            'last_name_kana.regex'  => __('validation.regex', ['attribute' => UserConsts::LABEL['last_name_kana']]),
+            'first_name.required'   => __('validation.required', [
+                'attribute' => UserConsts::LABEL['first_name'],
+            ]),
+            'first_name.string' => __('validation.string', [
+                'attribute' => UserConsts::LABEL['first_name'],
+            ]),
+            'first_name_kana.required' => __('validation.required', [
+                'attribute' => UserConsts::LABEL['first_name_kana'],
+            ]),
+            'first_name_kana.string' => __('validation.string', [
+                'attribute' => UserConsts::LABEL['first_name_kana'],
+            ]),
+            'first_name_kana.regex' => __('validation.regex', [
+                'attribute' => UserConsts::LABEL['first_name_kana'],
+            ]),
+            'phone_number.regex' => __('validation.regex', ['attribute' => UserConsts::LABEL['phone_number']]),
+            'email.required'     => __('validation.required', ['attribute' => UserConsts::LABEL['email']]),
+            'email.unique'       => __('validation.unique', ['attribute' => UserConsts::LABEL['email']]),
+            'email.email'        => __('validation.email'),
+            'password.required'  => __('validation.required', ['attribute' => UserConsts::LABEL['password']]),
+            'password.string'    => __('validation.string', ['attribute' => UserConsts::LABEL['password']]),
+            'password.between'   => __('validation.between', [
+                'attribute' => UserConsts::LABEL['password'],
                 'min'       => UserConsts::PASS_MIN,
                 'max'       => UserConsts::PASS_MAX,
             ]),
