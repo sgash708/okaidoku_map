@@ -2,31 +2,12 @@
 
 namespace App\Http\Requests;
 
+use App\Consts\UserConsts;
 use App\ValueObjects\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserPost extends FormRequest
 {
-    /** @var int */
-    private $user_name_min;
-    /** @var int */
-    private $user_name_max;
-    /** @var int */
-    private $user_pass_min;
-    /** @var int */
-    private $user_pass_max;
-
-    /**
-     * コンストラクタ
-     */
-    public function __construct()
-    {
-        $this->user_name_min = User\Name::MIN_LENGTH;
-        $this->user_name_max = User\Name::MAX_LENGTH;
-        $this->user_pass_min = User\Password::MIN_LENGTH;
-        $this->user_pass_max = User\Password::MAX_LENGTH;
-    }
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -44,8 +25,8 @@ class StoreUserPost extends FormRequest
      */
     public function rules(): array
     {
-        $name_between = $this->user_name_min . ',' . $this->user_name_max;
-        $pass_between = $this->user_pass_min . ',' . $this->user_pass_max;
+        $name_between = UserConsts::NAME_MIN . ',' . UserConsts::NAME_MAX;
+        $pass_between = UserConsts::PASS_MIN . ',' . UserConsts::PASS_MAX;
 
         return [
             'name'     => 'required|string|between:' . $name_between,
@@ -67,8 +48,8 @@ class StoreUserPost extends FormRequest
             'name.string'   => __('validation.string', ['attribute' => 'ユーザ名']),
             'name.between'  => __('validation.between', [
                 'attribute' => 'ユーザ名',
-                'min'       => $this->user_name_min,
-                'max'       => $this->user_name_max,
+                'min'       => UserConsts::NAME_MIN,
+                'max'       => UserConsts::NAME_MAX,
             ]),
             'email.required'    => __('validation.required', ['attribute' => 'メールアドレス']),
             'email.unique'      => __('validation.unique', ['attribute' => 'メールアドレス']),
@@ -77,8 +58,8 @@ class StoreUserPost extends FormRequest
             'password.string'   => __('validation.string', ['attribute' => 'パスワード']),
             'password.between'  => __('validation.between', [
                 'attribute' => 'パスワード',
-                'min'       => $this->user_pass_min,
-                'max'       => $this->user_pass_max,
+                'min'       => UserConsts::PASS_MIN,
+                'max'       => UserConsts::PASS_MAX,
             ]),
         ];
     }
