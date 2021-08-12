@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Entities;
 use App\Factories\UserFactory;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Collection;
 
 class UserRepository
 {
@@ -37,14 +39,15 @@ class UserRepository
      * store関数で保存した値が正しいか
      *
      * @param Entities\User $user
-     * @return boolean
+     *
+     * @return bool
      */
     public function store(Entities\User $user): bool
     {
         return (new User([
-            'name' => $user->getName(),
-            'email' => $user->getEmail(),
-            'password' => $user->getPassword()
+            'name'     => $user->getName(),
+            'email'    => $user->getEmail(),
+            'password' => $user->getPassword(),
         ]))->save();
     }
 }
