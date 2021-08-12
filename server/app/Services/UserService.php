@@ -14,7 +14,7 @@ class UserService
      */
     public function __construct()
     {
-        $this->user_repos = new UserRpository();
+        $this->user_repos = new UserRepository();
     }
 
     /**
@@ -38,9 +38,11 @@ class UserService
     {
         try {
             $user = $this->user_repos->nwe($request_params);
+
             return $this->user_repos->store($user);
         } catch (\Exception $e) {
             report($e);
+
             return false;
         }
     }
