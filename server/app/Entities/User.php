@@ -3,13 +3,13 @@
 namespace App\Entities;
 
 use App\ValueObjects\User\Email;
-use App\ValueObjects\User\Name;
+use App\ValueObjects\User\HandleName;
 use App\ValueObjects\User\Password;
 
 class User
 {
-    /** @var Name */
-    private $name;
+    /** @var HandleName */
+    private $handle_name;
     /** @var Email */
     private $email;
     /** @var Password */
@@ -18,15 +18,15 @@ class User
     /**
      * コンストラクタ
      *
-     * @param Name     $name
-     * @param Email    $email
-     * @param Password $password
+     * @param HandleName $name
+     * @param Email      $email
+     * @param Password   $password
      */
-    public function __construct(Name $name, Email $email, Password $password)
+    public function __construct(HandleName $handle_name, Email $email, Password $password)
     {
-        $this->name     = $name;
-        $this->email    = $email;
-        $this->password = $password;
+        $this->handle_name = $handle_name;
+        $this->email       = $email;
+        $this->password    = $password;
     }
 
     /**
@@ -36,7 +36,7 @@ class User
      */
     public function getName(): string
     {
-        return $this->name->get();
+        return $this->handle_name->get();
     }
 
     /**
