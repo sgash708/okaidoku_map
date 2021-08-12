@@ -31,9 +31,9 @@ class StoreUserPost extends FormRequest
         return [
             'handle_name'     => 'required|string|unique:users|between:' . $name_between,
             'last_name'       => 'required|string',
-            'last_name_kana'  => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            'last_name_kana'  => 'required|string|regex:/^[ァ-ヶー]+$/u',
             'first_name'      => 'required|string',
-            'first_name_kana' => 'required|string|regex:/^[ア-ン゛゜ァ-ォャ-ョー]+$/u',
+            'first_name_kana' => 'required|string|regex:/^[ァ-ヶー]+$/u',
             'phone_number'    => 'regex:/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/u',
             'email'           => 'required|unique:users|email',
             'password'        => 'required|string|between' . $pass_between,
