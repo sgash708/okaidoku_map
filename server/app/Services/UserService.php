@@ -37,7 +37,7 @@ class UserService
     public function store(array $request_params): bool
     {
         try {
-            $user = $this->user_repos->nwe($request_params);
+            $user = $this->user_repos->new($request_params);
 
             return $this->user_repos->store($user);
         } catch (\Exception $e) {
