@@ -10,6 +10,7 @@ use App\ValueObjects\User\LastName;
 use App\ValueObjects\User\LastNameKana;
 use App\ValueObjects\User\Password;
 use App\ValueObjects\User\PhoneNumber;
+use App\ValueObjects\User\Sex;
 
 class User
 {
@@ -29,6 +30,8 @@ class User
     private $first_name_kana;
     /** @var PhoneNumber */
     private $phone_number;
+    /** @var Sex */
+    private $sex;
 
     /**
      * コンストラクタ
@@ -45,7 +48,8 @@ class User
         LastNameKana $last_name_kana,
         FirstName $first_name,
         FirstNameKana $first_name_kana,
-        PhoneNumber $phone_number
+        PhoneNumber $phone_number,
+        Sex $sex
     ) {
         $this->handle_name     = $handle_name;
         $this->email           = $email;
@@ -55,6 +59,7 @@ class User
         $this->first_name      = $first_name;
         $this->first_name_kana = $first_name_kana;
         $this->phone_number    = $phone_number;
+        $this->sex             = $sex;
     }
 
     /**
@@ -85,5 +90,65 @@ class User
     public function getPassword(): string
     {
         return $this->password->get();
+    }
+
+    /**
+     * LastName取得
+     *
+     * @return string
+     */
+    public function getLastName(): string
+    {
+        return $this->last_name->get();
+    }
+
+    /**
+     * LastNameKana取得
+     *
+     * @return string
+     */
+    public function getLastNameKana(): string
+    {
+        return $this->last_name_kana->get();
+    }
+
+    /**
+     * FirstName取得
+     *
+     * @return string
+     */
+    public function getFirstName(): string
+    {
+        return $this->first_name->get();
+    }
+
+    /**
+     * FirstNameKana取得
+     *
+     * @return string
+     */
+    public function getFirstNameKana(): string
+    {
+        return $this->first_name_kana->get();
+    }
+
+    /**
+     * PhoneNumber取得
+     *
+     * @return string
+     */
+    public function getPhoneNumber(): string
+    {
+        return $this->phone_number->get();
+    }
+
+    /**
+     * Sex取得
+     *
+     * @return string
+     */
+    public function getSex(): string
+    {
+        return $this->sex->get();
     }
 }
