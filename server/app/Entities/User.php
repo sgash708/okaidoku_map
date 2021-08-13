@@ -36,9 +36,15 @@ class User
     /**
      * コンストラクタ
      *
-     * @param HandleName $name
-     * @param Email      $email
-     * @param Password   $password
+     * @param HandleName    $handle_name
+     * @param Email         $email
+     * @param Password      $password
+     * @param LastName      $last_name
+     * @param LastNameKana  $last_name_kana
+     * @param FirstName     $first_name
+     * @param FirstNameKana $first_name_kana
+     * @param PhoneNumber   $phone_number
+     * @param Sex           $sex
      */
     public function __construct(
         HandleName $handle_name,
