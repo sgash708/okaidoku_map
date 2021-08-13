@@ -51,7 +51,7 @@ class UserRepository
     public function store(Entities\User $user): bool
     {
         return (new User([
-            'handle_name'     => $user->getName(),
+            'handle_name'     => $user->getHandleName(),
             'email'           => $user->getEmail(),
             'password'        => $user->getPassword(),
             'last_name'       => $user->getLastName(),

@@ -73,7 +73,7 @@ class User
      *
      * @return string
      */
-    public function getName(): string
+    public function getHandleName(): string
     {
         return $this->handle_name->get();
     }

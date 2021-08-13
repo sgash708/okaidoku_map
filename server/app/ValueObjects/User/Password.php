@@ -4,6 +4,7 @@ namespace App\ValueObjects\User;
 
 use App\Consts\UserConsts;
 use App\ValueObjects\BaseValueObject;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class Password implements BaseValueObject

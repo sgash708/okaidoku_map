@@ -44,6 +44,6 @@ class PhoneNumber implements BaseValueObject
      */
     private function isPhoneNumber(string $phone_number): bool
     {
-        return Validator::make([$phone_number], ['regex:/^[ァ-ヶー]+$/u'])->passes();
+        return Validator::make([$phone_number], ['regex:/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/u'])->passes();
     }
 }

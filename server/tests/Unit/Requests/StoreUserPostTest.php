@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit\Requests;
 
 use App\Http\Requests\StoreUserPost;
 use Illuminate\Support\Arr;
