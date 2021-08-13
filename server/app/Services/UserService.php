@@ -37,6 +37,7 @@ class UserService
     public function store(array $request_params): bool
     {
         try {
+            // entityを返り値として持つ
             $user = $this->user_repos->new($request_params);
 
             return $this->user_repos->store($user);
