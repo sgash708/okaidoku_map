@@ -10,7 +10,7 @@ class FirstName implements BaseValueObject
     private $first_name;
 
     /**
-     * Name constructor
+     * FirstName constructor
      *
      * @param string $first_name
      *

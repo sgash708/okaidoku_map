@@ -12,7 +12,7 @@ class HandleName implements BaseValueObject
     private $handle_name;
 
     /**
-     * Name constructor
+     * HandleName constructor
      *
      * @param string $handle_name
      *
