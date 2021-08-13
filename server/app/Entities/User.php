@@ -145,9 +145,9 @@ class User
     /**
      * Sex取得
      *
-     * @return string
+     * @return int
      */
-    public function getSex(): string
+    public function getSex(): int
     {
         return $this->sex->get();
     }
