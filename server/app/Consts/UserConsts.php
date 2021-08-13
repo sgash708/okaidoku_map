@@ -16,6 +16,10 @@ class UserConsts
     public const NAME_MIN = 1;
     /** @var int */
     public const NAME_MAX = 255;
+    /** @var int */
+    public const SEX_MIN = 0;
+    /** @var int */
+    public const SEX_MAX = 2;
     /** @var array */
     public const LABEL = [
         'handle_name'     => 'ユーザ名',
@@ -26,5 +30,6 @@ class UserConsts
         'phone_number'    => '電話番号',
         'email'           => 'メールアドレス',
         'password'        => 'パスワード',
+        'sex'             => '性別',
     ];
 }

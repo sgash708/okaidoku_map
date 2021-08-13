@@ -27,6 +27,7 @@ class StoreUserPost extends FormRequest
     {
         $name_between = UserConsts::NAME_MIN . ',' . UserConsts::NAME_MAX;
         $pass_between = UserConsts::PASS_MIN . ',' . UserConsts::PASS_MAX;
+        $sex_between  = UserConsts::SEX_MIN . ',' . UserConsts::SEX_MAX;
 
         return [
             'handle_name'     => 'required|string|unique:users|between:' . $name_between,
@@ -37,7 +38,7 @@ class StoreUserPost extends FormRequest
             'phone_number'    => 'regex:/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/u',
             'email'           => 'required|unique:users|email',
             'password'        => 'required|string|between:' . $pass_between,
-            'sex'             => 'required|numeric|between:0,2',
+            'sex'             => 'required|numeric|between:' . $sex_between,
         ];
     }
 
@@ -90,6 +91,13 @@ class StoreUserPost extends FormRequest
                 'attribute' => UserConsts::LABEL['password'],
                 'min'       => UserConsts::PASS_MIN,
                 'max'       => UserConsts::PASS_MAX,
+            ]),
+            'sex.required' => __('validation.required', ['attribute' => UserConsts::LABEL['sex']]),
+            'sex.numeric'  => __('validation.numeric', ['attribute' => UserConsts::LABEL['sex']]),
+            'sex.between'  => __('validation.between', [
+                'attribute' => UserConsts::LABEL['sex'],
+                'min'       => UserConsts::SEX_MIN,
+                'max'       => UserConsts::SEX_MAX,
             ]),
         ];
     }
