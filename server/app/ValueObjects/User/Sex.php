@@ -41,7 +41,7 @@ class Sex implements BaseValueObject
      *
      * @return bool
      */
-    public function isRightNumber(int $sex): bool
+    private function isRightNumber(int $sex): bool
     {
         $sex_between = UserConsts::SEX_MIN . ',' . UserConsts::SEX_MAX;
 
