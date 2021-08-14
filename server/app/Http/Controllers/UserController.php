@@ -2,12 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserPost;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class UserController extends Controller
 {
+    /**
+     * @return View
+     */
+    public function index(): View
+    {
+        $users = (new UserService())->list();
+        return view('user.index', ['users' => $users]);
+    }
+
     /**
      * ユーザ作成へページ誘導
      *
@@ -28,9 +38,10 @@ class UserController extends Controller
     public function store(StoreUserPost $request): RedirectResponse
     {
         $user = $request->all();
+        dd($user);
         // UserServiceクラスを使い登録
         if ((new UserService())->store($user)) {
-            return redirect('/user/')->with('success_message', __('message.success_save'));
+            return rediwrect('/user/')->with('success_message', __('message.success_save'));
         }
 
         return redirect('/user/')->with('error_message', trans('message.failed_save'));
