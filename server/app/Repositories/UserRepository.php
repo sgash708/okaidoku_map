@@ -20,13 +20,13 @@ class UserRepository
     {
         return (new UserFactory())->make(
             $request_params['handle_name'],
+            $request_params['email'],
+            $request_params['password'],
             $request_params['last_name'],
             $request_params['last_name_kana'],
             $request_params['first_name'],
             $request_params['first_name_kana'],
             $request_params['phone_number'],
-            $request_params['email'],
-            $request_params['password'],
             $request_params['sex']
         );
     }
