@@ -14,9 +14,6 @@ class ShopFactory extends Factory
      */
     protected $model = Shop::class;
 
-    /** @var int */
-    private static int $number = 1;
-
     /**
      * Define the model's default state.
      *
@@ -25,7 +22,6 @@ class ShopFactory extends Factory
     public function definition()
     {
         return [
-            'id' => self::$number++,
             'name' => $this->faker->company(),
             'grid_x' => $this->faker->latitude(),
             'grid_y' => $this->faker->longitude(),
