@@ -70,23 +70,22 @@
             @endif
         </div>
         <div>
-            <input type="radio" id="sexChoice1" name="contact" value=0>
-            <label for="sexChoice1">男性</label>
-
-            <input type="radio" id="sexChoice2" name="contact" value=1>
-            <label for="sexChoice2">女性</label>
-
-            <input type="radio" id="sexChoice3" name="contact" value=2>
-            <label for="sexChoice3">その他</label>
+            <label>
+                <input type="radio" id="sexChoice1" name="contact" value=0>男性
+            </label>
+            <label for="sexChoice2">
+                <input type="radio" id="sexChoice2" name="contact" value=1>女性
+            </label>
+            <label for="sexChoice3">
+                <input type="radio" id="sexChoice3" name="contact" value=2>その他
+            </label>
 
             @if ($errors->has('sex'))
                 {{ $errors->first('sex') }}
             @endif
         </div>
 
-        <div>
-            <input type="submit" value="登録">
-        </div>
+        <button type="submit">登録</button>
     </form>
 </body>
 

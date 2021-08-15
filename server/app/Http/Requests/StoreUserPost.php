@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Consts\UserConsts;
-use App\ValueObjects\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreUserPost extends FormRequest
