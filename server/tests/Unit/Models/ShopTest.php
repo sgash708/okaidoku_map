@@ -22,11 +22,11 @@ class ShopTest extends TestCase
         $shop               = Shop::factory()->create();
         $shop_business_info = ShopBusinessInfo::factory()->create(['shop_id' => $shop->id]);
 
-        // Method 1: A comment exists in a post's comment collections.
+        // shop_bussiness_infosは、shopsのshop_business_infoのコレクションとして存在しているか
         $this->assertTrue($shop->shopBusinessInfos->contains($shop_business_info));
-        // Method 2: Count that a post comments collection exists.
+        // 存在するshop_business_infoデータは存在していて、数があっているか
         $this->assertEquals(1, $shop->shopBusinessInfos->count());
-        // Method 3: Comments are related to posts and is a collection instance.
+        // shop_business_infosは、shopsに紐づいていてコレクションインスタンスか
         $this->assertInstanceOf('Illuminate\Database\Eloquent\Collection', $shop->shopBusinessInfos);
     }
 }
