@@ -16,7 +16,6 @@
         <tr>
             <th>ユーザ名</th>
             <th>メールアドレス</th>
-            <th>パスワード</th>
             <th>苗字</th>
             <th>苗字カナ</th>
             <th>名前</th>
@@ -28,7 +27,6 @@
             <tr>
                 <td>{{ $user->handle_name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->password }}</td>
                 <td>{{ $user->last_name }}</td>
                 <td>{{ $user->last_name_kana }}</td>
                 <td>{{ $user->first_name }}</td>

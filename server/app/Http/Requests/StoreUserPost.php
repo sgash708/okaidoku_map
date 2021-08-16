@@ -92,7 +92,7 @@ class StoreUserPost extends FormRequest
                 'max'       => UserConsts::PASS_MAX,
             ]),
             'sex.required' => __('validation.required', ['attribute' => UserConsts::LABEL['sex']]),
-            'sex.integer'  => __('validation.integer', ['attribute' => UserConsts::LABEL['sex']]),
+            'sex.numeric'  => __('validation.numeric', ['attribute' => UserConsts::LABEL['sex']]),
             'sex.between'  => __('validation.between', [
                 'attribute' => UserConsts::LABEL['sex'],
                 'min'       => UserConsts::SEX_MIN,
