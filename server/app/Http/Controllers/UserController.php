@@ -38,7 +38,6 @@ class UserController extends Controller
     public function store(StoreUserPost $request): RedirectResponse
     {
         $user = $request->all();
-        dd($user);
         // UserServiceクラスを使い登録
         if ((new UserService())->store($user)) {
             return rediwrect('/user/')->with('success_message', __('message.success_save'));
