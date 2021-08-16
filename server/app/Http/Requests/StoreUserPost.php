@@ -37,7 +37,7 @@ class StoreUserPost extends FormRequest
             'phone_number'    => 'regex:/^[0-9]{2,4}-[0-9]{2,4}-[0-9]{3,4}$/u',
             'email'           => 'required|unique:users|email',
             'password'        => 'required|string|between:' . $pass_between,
-            'sex'             => 'required|integer|between:' . $sex_between,
+            'sex'             => 'required|numeric|between:' . $sex_between,
         ];
     }
 
