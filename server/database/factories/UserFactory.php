@@ -16,9 +16,6 @@ class UserFactory extends Factory
      */
     protected $model = User::class;
 
-    /** @var int */
-    private static int $number = 1;
-
     /**
      * Define the model's default state.
      *
@@ -27,7 +24,6 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'id'              => self::$number++,
             'handle_name'     => $this->faker->userName(),
             'last_name'       => $this->faker->lastName(),
             'last_name_kana'  => $this->faker->lastKanaName(),

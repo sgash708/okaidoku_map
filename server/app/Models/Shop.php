@@ -9,8 +9,6 @@ class Shop extends Model
 {
     use HasFactory;
 
-    public $incrementing = false;
-
     /**
      * shop_business_infoテーブルの<hasMany>所有関係
      *
