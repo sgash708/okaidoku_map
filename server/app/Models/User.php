@@ -10,13 +10,17 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    protected $guarded = [
+        'id',
+    ];
+
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    // REF: https://blog.capilano-fw.com/?p=504
+    protected $casts = [
+        'sex' => 'integer'
     ];
 }
