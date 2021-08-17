@@ -8,6 +8,13 @@
             "pathMappings": {
                 "/var/www/html": "${workspaceRoot}/server/"
             }
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:8888/user",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
