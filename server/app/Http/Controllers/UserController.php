@@ -15,7 +15,7 @@ class UserController extends Controller
     public function index(): View
     {
         $users = (new UserService())->list();
-        return view('user.index', ['users' => $users]);
+        return view('user.index', compact('users'));
     }
 
     /**
