@@ -40,9 +40,9 @@ class UserController extends Controller
         $user = $request->all();
         // UserServiceクラスを使い登録
         if ((new UserService())->store($user)) {
-            return redirect()->route('user.index')->with('success_message', __('message.success_save'));
+            return redirect()->route('user.index')->with(['success_message' => __('message.success_save')]);
         }
 
-        return redirect()->route('user.index')->with('error_message', __('message.failed_save'));
+        return redirect()->route('user.index')->with(['error_message' => __('message.failed_save')]);
     }
 }
