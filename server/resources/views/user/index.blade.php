@@ -36,6 +36,11 @@
             </tr>
         @endforeach
     </table>
+    @if (session('success_message'))
+        <div class="success_message">
+            {{ session('success_message') }}
+        </div>
+    @endif
 </body>
 
 </html>

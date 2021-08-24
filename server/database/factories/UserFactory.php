@@ -32,7 +32,7 @@ class UserFactory extends Factory
             'phone_number'    => $this->faker->phoneNumber(),
             'email'           => $this->faker->unique()->safeEmail(),
             'password'        => Hash::make('password'),
-            'sex'             => $this->faker->numberBetween(0, 4),
+            'sex'             => $this->faker->numberBetween(0, 2),
             'remember_token'  => Str::random(10),
         ];
     }
