@@ -47,13 +47,28 @@ class UserController extends Controller
     }
 
     /**
-     * ユーザ退会確認リダイレクト
+     * ユーザ退会確認
      *
+     * @param DeleteUserPost $request
      * @return RedirectResponse
      */
     public function delete(DeleteUserPost $request): RedirectResponse
     {
+        return redirect()->route('user.confirm')->withInput($request);
+    }
+
+    /**
+     * ユーザ退会
+     *
+     * @param DeleteUserPost $request
+     * @return RedirectResponse
+     */
+    public function confirm(DeleteUserPost $request): RedirectResponse
+    {
         $user = $request->all();
-        redirect()->route('user.confirm');
+        if ((new UserService())->delete($user)) {
+            return redirect()->route('user.delete')->with(['success_message' => __('message.success_save')]);
+        }
+        return redirect()->route('user.delete')->with(['error_message' => __('message.failed_save')]);
     }
 }
