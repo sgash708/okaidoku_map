@@ -9,6 +9,9 @@
 </head>
 
 <body>
+    {{-- JS起動テスト --}}
+    <div id="app"></div>
+    <script src="js/app.js"></script>
 
     <h1>ユーザ一覧</h1>
     <a href="{{ route('user.create') }}">ユーザ作成</a>
