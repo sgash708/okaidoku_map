@@ -45,4 +45,15 @@ class UserController extends Controller
 
         return redirect()->route('user.index')->with(['error_message' => __('message.failed_save')]);
     }
+
+    /**
+     * ユーザ退会確認リダイレクト
+     *
+     * @return RedirectResponse
+     */
+    public function delete(DeleteUserPost $request): RedirectResponse
+    {
+        $user = $request->all();
+        redirect()->route('user.confirm');
+    }
 }
