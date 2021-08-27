@@ -9,5 +9,5 @@ Route::prefix('user')->name('user.')->group(function () {
 
     // 退会処理
     Route::post('/confirm', 'UserController@deleteConfirm')->name('delete.confirm');
-    Route::get('/delete', 'UserController@delete')->name('delete.complete');
+    Route::post('/delete', 'UserController@delete')->name('delete.complete');
 });
