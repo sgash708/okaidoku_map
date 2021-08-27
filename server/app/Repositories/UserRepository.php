@@ -42,6 +42,18 @@ class UserRepository
     }
 
     /**
+     * 一件取得
+     *
+     * @param int $id
+     *
+     * @return App\Models\User
+     */
+    public function findUser(int $id): User
+    {
+        return User::findOrFail($id);
+    }
+
+    /**
      * store関数で保存した値が正しいか
      *
      * @param Entities\User $user
@@ -74,7 +86,7 @@ class UserRepository
      */
     public function delete(array $param): int
     {
-        $user = User::findOrFail($param['id']);
+        $user = $this->findUser($param['id']);
 
         return $user->delete();
     }

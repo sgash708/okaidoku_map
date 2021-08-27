@@ -56,9 +56,9 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function delete(DeleteUserPost $request): View
+    public function deleteConfirm(DeleteUserPost $request): View
     {
-        $user = $request->first();
+        $user = $request->all();
 
         return view('user.delete.confirm', compact('user'));
     }
@@ -70,13 +70,13 @@ class UserController extends Controller
      *
      * @return RedirectResponse
      */
-    public function confirm(Request $request): RedirectResponse
+    public function delete(Request $request): RedirectResponse
     {
-        $user = $request->first();
-        if ((new UserService())->delete($user->id)) {
-            return redirect()->route('user.delete.complete')->with(['success_message' => __('message.success_save')]);
+        $user = $request->all();
+        if ((new UserService())->delete($user) != 0) {
+            return redirect()->route('user.index')->with(['success_message' => __('message.success_delete')]);
         }
 
-        return redirect()->route('user.delete.complete')->with(['error_message' => __('message.failed_save')]);
+        return redirect()->route('user.index')->with(['error_message' => __('message.failed_delete'), 'user' => \Session::get('_old_input')]);
     }
 }
