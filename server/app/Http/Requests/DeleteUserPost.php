@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Consts\UserConsts;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserPost extends FormRequest
+class DeleteUserPost extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
