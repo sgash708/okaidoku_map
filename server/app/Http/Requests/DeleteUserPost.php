@@ -25,7 +25,7 @@ class StoreUserPost extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|numeric|unique:users',
+            'id' => 'required|numeric|exists:users,id',
         ];
     }
 
@@ -39,6 +39,7 @@ class StoreUserPost extends FormRequest
         return [
             'id.required' => __('validation.required', ['attribute' => UserConsts::LABEL['id']]),
             'id.numeric'  => __('validation.numeric', ['attribute' => UserConsts::LABEL['id']]),
+            'id.exists'   => __('validation.exists', ['attribute' => UserConsts::LABEL['id']]),
         ];
     }
 }
