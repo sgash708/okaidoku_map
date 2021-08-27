@@ -27,25 +27,8 @@ class DeleteUserPostTest extends TestCase
     }
 
     /**
-     * @covers ::authorize
-     * @test
-     */
-    public function authorize()
-    {
-        $this->assertTrue((new DeleteUserPost())->authorize());
-    }
-
-    /**
-     * @covers ::messages
-     * @test
-     */
-    public function messages()
-    {
-        $this->assertIsArray((new DeleteUserPost())->messages());
-    }
-
-    /**
      * rules関数のテスト
+     * setUpBeforeClassが使えないので先頭で評価させる
      *
      * REF: https://qiita.com/hirokita117/items/f49fcde808f10b55959f#%E3%83%86%E3%82%B9%E3%83%88%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E4%BD%9C%E6%88%90
      *
@@ -70,6 +53,24 @@ class DeleteUserPostTest extends TestCase
     }
 
     /**
+     * @covers ::authorize
+     * @test
+     */
+    public function authorize()
+    {
+        $this->assertTrue((new DeleteUserPost())->authorize());
+    }
+
+    /**
+     * @covers ::messages
+     * @test
+     */
+    public function messages()
+    {
+        $this->assertIsArray((new DeleteUserPost())->messages());
+    }
+
+    /**
      * userData
      *
      * @return array
@@ -77,10 +78,10 @@ class DeleteUserPostTest extends TestCase
     public function userData(): array
     {
         return [
+            'id_正常'      => ['id', '1', true],
             'id_必須エラー' => ['id', '', false],
             'id_数値エラー' => ['id', 'aaa', false],
             'id_存在エラー' => ['id', '100', false],
-            'id_正常'    => ['id', '1', true],
         ];
     }
 }
