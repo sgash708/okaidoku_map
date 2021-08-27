@@ -15,6 +15,11 @@
 
     <h1>ユーザ一覧</h1>
     <a href="{{ route('user.create') }}">ユーザ作成</a>
+    <form action="{{ route('user.delete') }}" method="post">
+        @csrf
+        <input type='input' name='id'>
+        <input type='submit' value='ユーザ退会'>
+    </form>
     <table>
         <tr>
             <th>ユーザ名</th>
