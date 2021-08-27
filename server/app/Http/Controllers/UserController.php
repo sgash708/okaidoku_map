@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUserPost;
+use App\Http\Requests\User\DeleteUserPost;
+use App\Http\Requests\User\StoreUserPost;
 use App\Services\UserService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -15,6 +17,7 @@ class UserController extends Controller
     public function index(): View
     {
         $users = (new UserService())->list();
+
         return view('user.index', compact('users'));
     }
 
@@ -50,25 +53,30 @@ class UserController extends Controller
      * ユーザ退会確認
      *
      * @param DeleteUserPost $request
-     * @return RedirectResponse
+     *
+     * @return View
      */
-    public function delete(DeleteUserPost $request): RedirectResponse
+    public function delete(DeleteUserPost $request): View
     {
-        return redirect()->route('user.confirm')->withInput($request);
+        $user = $request->first();
+
+        return view('user.delete.confirm', compact('user'));
     }
 
     /**
      * ユーザ退会
      *
-     * @param DeleteUserPost $request
+     * @param Request $request
+     *
      * @return RedirectResponse
      */
-    public function confirm(DeleteUserPost $request): RedirectResponse
+    public function confirm(Request $request): RedirectResponse
     {
-        $user = $request->all();
-        if ((new UserService())->delete($user)) {
-            return redirect()->route('user.delete')->with(['success_message' => __('message.success_save')]);
+        $user = $request->first();
+        if ((new UserService())->delete($user->id)) {
+            return redirect()->route('user.delete.complete')->with(['success_message' => __('message.success_save')]);
         }
-        return redirect()->route('user.delete')->with(['error_message' => __('message.failed_save')]);
+
+        return redirect()->route('user.delete.complete')->with(['error_message' => __('message.failed_save')]);
     }
 }
