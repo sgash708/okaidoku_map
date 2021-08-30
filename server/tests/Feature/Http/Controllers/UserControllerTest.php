@@ -15,12 +15,15 @@ class UserControllerTest extends TestCase
     /** @var User */
     private User $user;
 
+    /**
+     * setUp
+     */
     protected function setUp(): void
     {
         parent::setUp();
         $this->user = User::factory()->create();
     }
-    
+
     /**
      * @test
      * @covers ::index
