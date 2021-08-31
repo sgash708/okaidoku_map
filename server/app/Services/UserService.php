@@ -19,7 +19,7 @@ class UserService
     }
 
     /**
-     * UserServiceクラスから、データ一覧の取得
+     * UserRepositoryクラスから、データ一覧の取得
      *
      * @return Collection
      */
@@ -29,7 +29,7 @@ class UserService
     }
 
     /**
-     * UserServiceクラスから、store関数を呼び出す
+     * UserRepositoryクラスから、store関数を呼び出す
      *
      * @param array $request_params
      *
@@ -46,6 +46,24 @@ class UserService
             report($e);
 
             return false;
+        }
+    }
+
+    /**
+     * 削除処理
+     *
+     * @param array $user
+     *
+     * @return int
+     */
+    public function delete(array $user): int
+    {
+        try {
+            return $this->user_repos->delete($user);
+        } catch (\Exception $e) {
+            report($e);
+
+            return 0;
         }
     }
 }

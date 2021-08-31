@@ -9,18 +9,20 @@ use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
-    // データを保存させない
     use DatabaseTransactions;
 
     /** @var User */
     private User $user;
 
+    /**
+     * setUp
+     */
     protected function setUp(): void
     {
         parent::setUp();
         $this->user = User::factory()->create();
     }
-    
+
     /**
      * @test
      * @covers ::index

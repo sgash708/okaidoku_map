@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Unit\Requests;
+namespace Tests\Unit\Requests\User;
 
-use App\Http\Requests\StoreUserPost;
+use App\Http\Requests\User\StoreUserPost;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Validator;
 use Tests\TestCase;

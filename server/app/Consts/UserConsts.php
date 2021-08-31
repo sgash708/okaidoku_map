@@ -22,6 +22,7 @@ class UserConsts
     public const SEX_MAX = 2;
     /** @var array */
     public const LABEL = [
+        'id'              => 'ユーザID',
         'handle_name'     => 'ユーザ名',
         'last_name'       => '苗字',
         'last_name_kana'  => '苗字カナ',

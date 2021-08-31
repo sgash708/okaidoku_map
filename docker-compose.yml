@@ -28,3 +28,19 @@ services:
       - ./docker/db/sql:/docker-entrypoint-initdb.d
     ports: 
       - 3308:3306
+
+  db-testing:
+    env_file: .env
+    image: mysql:5.7
+    container_name: omap_db_test
+    environment: 
+      MYSQL_ROOT_PASSWORD: ${MYSQL_RPASS}
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASS}
+      TZ: ${DB_TZ}
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes: 
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports: 
+      - 3307:3306

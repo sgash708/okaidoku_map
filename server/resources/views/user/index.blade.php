@@ -15,6 +15,11 @@
 
     <h1>ユーザ一覧</h1>
     <a href="{{ route('user.create') }}">ユーザ作成</a>
+    <form action="{{ route('user.delete.confirm') }}" method="post">
+        @csrf
+        <input type='input' name='id'>
+        <input type='submit' value='ユーザ退会'>
+    </form>
     <table>
         <tr>
             <th>ユーザ名</th>
@@ -42,6 +47,10 @@
     @if (session('success_message'))
         <div class="success_message">
             {{ session('success_message') }}
+        </div>
+    @elseif (session('error_message'))
+        <div class="error_message">
+            {{ session('error_message') }}
         </div>
     @endif
 </body>

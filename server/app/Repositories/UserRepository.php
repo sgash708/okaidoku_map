@@ -32,13 +32,25 @@ class UserRepository
     }
 
     /**
-     * User一覧取得
+     * 一覧取得
      *
      * @return Collection
      */
     public function list(): Collection
     {
         return User::all();
+    }
+
+    /**
+     * 一件取得
+     *
+     * @param int $id
+     *
+     * @return App\Models\User
+     */
+    public function findUser(int $id): User
+    {
+        return User::findOrFail($id);
     }
 
     /**
@@ -61,5 +73,21 @@ class UserRepository
             'phone_number'    => $user->getPhoneNumber(),
             'sex'             => $user->getSex(),
         ]))->save();
+    }
+
+    /**
+     * 削除処理
+     *
+     * @param array $user
+     *
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
+     *
+     * @return int
+     */
+    public function delete(array $param): int
+    {
+        $user = $this->findUser($param['id']);
+
+        return $user->delete();
     }
 }
