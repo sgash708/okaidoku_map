@@ -5,9 +5,12 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Models\Shop;
 use App\Models\ShopBusinessInfo;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ShopTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @var Shop */
     private Shop $shop;
     /** @var ShopBusinessInfo */

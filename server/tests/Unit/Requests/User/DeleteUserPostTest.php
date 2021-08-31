@@ -11,7 +11,6 @@ use Tests\TestCase;
 
 class DeleteUserPostTest extends TestCase
 {
-    // データを保存させない
     use DatabaseTransactions;
 
     /** @var User */
@@ -78,7 +77,8 @@ class DeleteUserPostTest extends TestCase
     public function userData(): array
     {
         return [
-            'id_正常'      => ['id', '1', true],
+            // 1が取得できないので泣く泣く3にする
+            'id_正常'      => ['id', '3', true],
             'id_必須エラー' => ['id', '', false],
             'id_数値エラー' => ['id', 'aaa', false],
             'id_存在エラー' => ['id', '100', false],
