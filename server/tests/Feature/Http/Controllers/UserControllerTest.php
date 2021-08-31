@@ -4,13 +4,10 @@ namespace Tests\Feature\Http\Controllers;
 
 use App\Http\Controllers\UserController;
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class UserControllerTest extends TestCase
 {
-    // データを保存させない
-    use DatabaseTransactions;
 
     /** @var User */
     private User $user;

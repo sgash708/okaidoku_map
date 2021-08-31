@@ -5,13 +5,9 @@ namespace Tests\Unit\Models;
 use Tests\TestCase;
 use App\Models\Shop;
 use App\Models\ShopBusinessInfo;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ShopTest extends TestCase
 {
-    // データを保存させない
-    use DatabaseTransactions;
-
     /** @var Shop */
     private Shop $shop;
     /** @var ShopBusinessInfo */
