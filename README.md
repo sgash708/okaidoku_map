@@ -21,7 +21,7 @@
     * Apache
     * Composer
     * Xdebug
+    * PHPUnit
 
 # できればやってみたいこと
-* DDD
-    * もしくはクリーンアーキテクチャ
+* クリーンアーキテクチャ
