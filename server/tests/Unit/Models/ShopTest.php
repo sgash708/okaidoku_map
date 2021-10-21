@@ -13,6 +13,7 @@ class ShopTest extends TestCase
 
     /** @var Shop */
     private Shop $shop;
+
     /** @var ShopBusinessInfo */
     private ShopBusinessInfo $shop_business_info;
 
@@ -25,7 +26,6 @@ class ShopTest extends TestCase
         $this->shop               = Shop::factory()->create();
         $this->shop_business_info = ShopBusinessInfo::factory()->create(['shop_id' => $this->shop->id]);
     }
-    
 
     /**
      * @test
